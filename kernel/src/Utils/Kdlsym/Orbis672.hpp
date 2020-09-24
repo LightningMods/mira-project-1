@@ -180,6 +180,7 @@
 #define kdlsym_addr_vsnprintf                              0x00123630
 #define kdlsym_addr_wakeup                                 0x0022A0A0
 #define kdlsym_addr_Xfast_syscall                          0x000001C0
+#define kdlsym_addr_target_id                              0x01BD800D
 
 // Kernel Hooks
 #define kdlsym_addr_printf_hook                            0x01A9FE98
@@ -229,7 +230,7 @@
 #define ssc_enable_data_mount_patch                        0x0033943E
 
 // SceShellCore patches - enable VR without spoof
-#define ssc_enable_vr_patch                                0x00DDDD50
+#define ssc_enable_vr_patch                                0x00DDDD70
 
 // SceShellCore patches - enable official external HDD support (Support added in 4.50
 #define ssc_external_hdd_pkg_installer_patch               0x009FB311
