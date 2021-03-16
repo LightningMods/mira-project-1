@@ -43,6 +43,9 @@ void Mira::Boot::Patches::install_prePatches()
                 case MIRA_PLATFORM_ORBIS_BSD_750:
 			install_prerunPatches_750();
 			break;
+                case MIRA_PLATFORM_ORBIS_BSD_751:
+			install_prerunPatches_751();
+			break;
 		case MIRA_PLATFORM_ORBIS_BSD_755:
 			install_prerunPatches_755();
 			break;

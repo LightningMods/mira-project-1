@@ -22,6 +22,7 @@ namespace Mira
             static void install_prerunPatches_650();
             static void install_prerunPatches_672();
             static void install_prerunPatches_750();
+            static void install_prerunPatches_751();
             static void install_prerunPatches_755();
             // static void install_prerunPatches_SteamLink(); // got both versions booting off the same code
             static void install_prerunPatches_SteamLink2();

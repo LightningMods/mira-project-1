@@ -1,7 +1,7 @@
 #pragma once
 #include <Boot/Config.hpp>
 
-#if MIRA_PLATFORM == MIRA_PLATFORM_ORBIS_BSD_755
+#if MIRA_PLATFORM == MIRA_PLATFORM_ORBIS_BSD_751
 /*
     These are the required functions in order for the Oni Framework to operate properly
     These are all offsets into the base of the kernel. They expect all standard FreeBSD 9 prototypes
@@ -223,7 +223,7 @@
 #define ssc_enable_fakepkg_patch                           0x003C244F
 
 // SceShellCore patches - use free prefix instead fake
-#define ssc_fake_to_free_patch                             0x00F66831
+#define ssc_fake_to_free_patch                             0x00F66811
 
 // SceShellCore patches - enable remote pkg installer
 #define ssc_enable_data_mount_patch                        0x00316BC3

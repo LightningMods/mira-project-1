@@ -7,9 +7,9 @@
 	Please, please, please!
 	Keep patches consistent with the used patch style for readability.
 */
-void Mira::Boot::Patches::install_prerunPatches_755()
+void Mira::Boot::Patches::install_prerunPatches_751()
 {
-#if MIRA_PLATFORM == MIRA_PLATFORM_ORBIS_BSD_755
+#if MIRA_PLATFORM == MIRA_PLATFORM_ORBIS_BSD_751
 	// NOTE: Only apply patches that the loader requires to run, the rest of them should go into Mira's ELF
 	// You must assign the kernel base pointer before anything is done
 	if (!gKernelBase)
