@@ -295,6 +295,7 @@ bool Mira::Framework::Initialize()
 	// Set the running flag
 	m_InitParams.isRunning = true;
 
+#if 1
   // Mira is now ready ! Now Killing SceShellUI for relaunching UI Process :D
   struct proc* ui_proc = Mira::OrbisOS::Utilities::FindProcessByName("SceShellUI");
   if (ui_proc) {
@@ -302,6 +303,8 @@ bool Mira::Framework::Initialize()
   } else {
       WriteLog(LL_Error, "Unable to find SceShellUI Process !");
   }
+#endif
+  
   
 	return true;
 }
@@ -355,7 +358,7 @@ struct thread* Mira::Framework::GetSyscoreThread()
 {
 	auto _mtx_lock_flags = (void(*)(struct mtx *mutex, int flags))kdlsym(_mtx_lock_flags);
 	auto _mtx_unlock_flags = (void(*)(struct mtx *mutex, int flags))kdlsym(_mtx_unlock_flags);
-	auto s_Process = OrbisOS::Utilities::FindProcessByName("SceSysCore");
+	auto s_Process = OrbisOS::Utilities::FindProcessByName("SceSysCore.elf");
 	if (s_Process == nullptr)
 	{
 		WriteLog(LL_Error, "could not get SceSysCore process.");

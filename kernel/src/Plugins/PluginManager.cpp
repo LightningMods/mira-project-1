@@ -11,6 +11,7 @@
 #include <Plugins/FakePkg/FakePkgManager.hpp>
 #include <Plugins/Substitute/Substitute.hpp>
 #include <Plugins/BrowserActivator/BrowserActivator.hpp>
+#include <Plugins/DebugSettings/DebugSettings.hpp>
 #include <Plugins/MorpheusEnabler/MorpheusEnabler.hpp>
 #include <Plugins/RemotePlayEnabler/RemotePlayEnabler.hpp>
 #include <Plugins/SyscallGuard/SyscallGuardPlugin.hpp>
@@ -36,9 +37,11 @@ PluginManager::PluginManager() :
     m_EmuRegistry(nullptr),
     m_Substitute(nullptr),
     m_BrowserActivator(nullptr),
+    m_DebugSettingsActivator(nullptr),
     m_MorpheusEnabler(nullptr),
     m_RemotePlayEnabler(nullptr),
-    m_SyscallGuard(nullptr)
+    m_SyscallGuard(nullptr),
+    m_TTYRedirector(nullptr)
 {
     // Hushes error: private field 'm_FileManager' is not used [-Werror,-Wunused-private-field]
 	m_Logger = nullptr;
@@ -113,6 +116,7 @@ bool PluginManager::OnLoad()
             break;
         }
 
+#if 0
         // Initialize Substitute
         m_Substitute = new Mira::Plugins::Substitute();
         if (m_Substitute == nullptr)
@@ -121,12 +125,22 @@ bool PluginManager::OnLoad()
             s_Success = false;
             break;
         }
+#endif
 
         // Initialize BrowserActivator
         m_BrowserActivator = new Mira::Plugins::BrowserActivator();
         if (m_BrowserActivator == nullptr)
         {
             WriteLog(LL_Error, "could not allocate browser activator.");
+            s_Success = false;
+            break;
+        }
+
+        // Initialize DebugSettingsActivator
+        m_DebugSettingsActivator = new Mira::Plugins::DebugSettingsActivator();
+        if (m_DebugSettingsActivator == nullptr)
+        {
+            WriteLog(LL_Error, "could not allocate debug settings activator.");
             s_Success = false;
             break;
         }
@@ -157,6 +171,7 @@ bool PluginManager::OnLoad()
             s_Success = false;
             break;
         }
+	break;
     } while (false);
 
     if (m_Debugger)
@@ -199,6 +214,12 @@ bool PluginManager::OnLoad()
     {
         if (!m_BrowserActivator->OnLoad())
             WriteLog(LL_Error, "could not load browser activator.");
+    }
+
+    if (m_DebugSettingsActivator)
+    {
+        if (!m_DebugSettingsActivator->OnLoad())
+            WriteLog(LL_Error, "could not load debug settings activator.");
     }
 
     if (m_MorpheusEnabler)
@@ -609,7 +630,7 @@ bool PluginManager::OnProcessExec(struct proc* p_Process)
 {
     if (p_Process == nullptr)
         return false;
-    
+
     if (m_Substitute)
     {
         if (!m_Substitute->OnProcessExec(p_Process))
@@ -629,7 +650,7 @@ bool PluginManager::OnProcessExecEnd(struct proc* p_Process)
 {
     if (p_Process == nullptr)
         return false;
-    
+
     if (m_Substitute)
     {
         if (!m_Substitute->OnProcessExecEnd(p_Process))
@@ -643,7 +664,7 @@ bool PluginManager::OnProcessExit(struct proc* p_Process)
 {
     if (p_Process == nullptr)
         return false;
-    
+
     if (m_Substitute)
     {
         if (!m_Substitute->OnProcessExit(p_Process))

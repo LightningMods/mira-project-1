@@ -26,14 +26,18 @@ extern "C" {
 #include "Kdlsym/Orbis503.hpp"
 #elif MIRA_PLATFORM==MIRA_PLATFORM_ORBIS_BSD_505
 #include "Kdlsym/Orbis505.hpp"
+#elif MIRA_PLATFORM==MIRA_PLATFORM_ORBIS_BSD_555
+#include "Kdlsym/Orbis555.hpp"
 #elif MIRA_PLATFORM==MIRA_PLATFORM_ORBIS_BSD_620
 #include "Kdlsym/Orbis620.hpp"
 #elif MIRA_PLATFORM==MIRA_PLATFORM_ORBIS_BSD_650
 #include "Kdlsym/Orbis650.hpp"
 #elif MIRA_PLATFORM==MIRA_PLATFORM_ORBIS_BSD_672
 #include "Kdlsym/Orbis672.hpp"
-#elif MIRA_PLATFORM==MIRA_PLATFORM_ORBIS_BSD_702
-#include "Kdlsym/Orbis702.hpp"
+#elif MIRA_PLATFORM==MIRA_PLATFORM_ORBIS_BSD_750
+#include "Kdlsym/Orbis750.hpp"
+#elif MIRA_PLATFORM==MIRA_PLATFORM_ORBIS_BSD_755
+#include "Kdlsym/Orbis755.hpp"
 #endif
 
 // Kernel base address, this must be filled out on-startup (normally done in oni_initializeKernel)

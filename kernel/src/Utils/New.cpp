@@ -48,7 +48,6 @@ void * operator new[] (unsigned long int p_Size)
 {
 	return ::operator new(p_Size);
 }
-
 // Delete
 void operator delete(void* p_Pointer) noexcept
 {
