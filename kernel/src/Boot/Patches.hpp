@@ -21,6 +21,7 @@ namespace Mira
             static void install_prerunPatches_620();
             static void install_prerunPatches_650();
             static void install_prerunPatches_672();
+            static void install_prerunPatches_702();
             static void install_prerunPatches_750();
             static void install_prerunPatches_751();
             static void install_prerunPatches_755();

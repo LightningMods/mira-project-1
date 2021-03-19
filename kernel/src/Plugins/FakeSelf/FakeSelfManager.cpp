@@ -431,7 +431,10 @@ int FakeSelfManager::SceSblAuthMgrSmLoadSelfSegment_Mailbox(uint64_t p_ServiceId
     auto sceSblServiceMailbox = (int(*)(uint32_t p_ServiceId, void* p_Request, void* p_Response))kdlsym(sceSblServiceMailbox);
 
 	// self_context is first param of caller. 0x08 = sizeof(struct self_context*)
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Wframe-address"
 	uint8_t* frame = (uint8_t*)__builtin_frame_address(1);
+    #pragma clang diagnostic pop
 	SelfContext* s_Context = *(SelfContext**)(frame - 0x08);
 
     auto s_RequestMessage = static_cast<MailboxMessage*>(p_Request);
@@ -461,7 +464,10 @@ int FakeSelfManager::SceSblAuthMgrSmLoadSelfSegment_Mailbox(uint64_t p_ServiceId
 int FakeSelfManager::SceSblAuthMgrSmLoadSelfBlock_Mailbox(uint64_t p_ServiceId, uint8_t* p_Request, void* p_Response)
 {
     // self_context is first param of caller. 0x08 = sizeof(struct self_context*)
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Wframe-address"
     uint8_t* frame = (uint8_t*)__builtin_frame_address(1);
+    #pragma clang diagnostic pop
     SelfContext* p_Context = *(SelfContext**)(frame - 0x08);
 
     bool s_IsUnsigned = p_Context && (p_Context->format == SelfFormat::Elf || IsFakeSelf((SelfContext*)p_Context));
