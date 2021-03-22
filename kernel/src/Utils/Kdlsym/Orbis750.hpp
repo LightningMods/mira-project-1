@@ -216,7 +216,7 @@
 
 // SceShellCore patches - call nidf_libSceDipsw
 #define ssc_nidf_libSceDipsw_patchA                        0x00168ABA
-#define ssc_nidf_libSceDipsw_patchB                        0x003CBB38 // old 0x00316BD3
+#define ssc_nidf_libSceDipsw_patchB                        0x00316BD3
 #define ssc_nidf_libSceDipsw_patchC                        0x007FBF9A // old 0x007FBF2A
 #define ssc_nidf_libSceDipsw_patchD                        0x009D31FA // old 0x009D317A
 
